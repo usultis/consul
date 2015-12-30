@@ -3,7 +3,8 @@ resource "aws_instance" "server" {
     instance_type = "${var.instance_type}"
     key_name = "${var.key_name}"
     count = "${var.servers}"
-    security_groups = ["${aws_security_group.consul.name}"]
+    vpc_security_group_ids = ["${aws_security_group.consul.id}"]
+    subnet_id = "${element(split(",",var.subnets),0)}"
 
     connection {
         user = "${lookup(var.user, var.platform)}"
@@ -13,6 +14,7 @@ resource "aws_instance" "server" {
     #Instance tags
     tags {
         Name = "${var.tagName}-${count.index}"
+        Service = "${var.environment}"
     }
 
     provisioner "file" {
