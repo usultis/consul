@@ -63,3 +63,7 @@ variable "vpc_id" {
 variable "subnets" {
     description = "Subnet ids in which to install the module"
 }
+
+variable "environment" {
+    description = "Environment"
+}
