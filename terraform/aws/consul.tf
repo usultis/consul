@@ -46,7 +46,7 @@ resource "aws_instance" "server" {
 resource "aws_security_group" "consul" {
     name = "consul"
     description = "Consul internal traffic + maintenance."
-
+    vpc_id = "${var.vpc_id}"
     // These are for internal traffic
     ingress {
         from_port = 0
