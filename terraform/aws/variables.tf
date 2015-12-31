@@ -38,7 +38,7 @@ variable "region" {
 }
 
 variable "servers" {
-    default = "3"
+    default = 3
     description = "The number of Consul servers to launch."
 }
 
